@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+   name: mysql-config-file
+type: Opaque
+stringData:
+  MYSQL_ROOT_PASSWORD: "mysql"
+  MYSQL_DATABASE: "obo"
+  MYSQL_USER: "admin"
+  MYSQL_PASSWORD: "123456"
