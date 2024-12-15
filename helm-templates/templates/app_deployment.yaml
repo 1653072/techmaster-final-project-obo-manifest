@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "helm-obo.fullname" . }}
+  labels:
+    app: {{ template "helm-obo.name" . }}
+    chart: {{ template "helm-obo.chart" . }}
+spec:
+  replicas: {{ .Values.appDeployment.replicaCount }}
+  strategy:
+    type: {{ .Values.appDeployment.strategyType }}
+  selector:
+    matchLabels:
+      app: {{ template "helm-obo.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "helm-obo.name" . }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.appDeployment.image.repository }}:{{ .Values.appDeployment.image.tag }}"
+          imagePullPolicy: {{ .Values.appDeployment.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.appDeployment.containerPort }}
+              name: http
+              protocol: TCP
+          livenessProbe:
+            {{- toYaml .Values.appDeployment.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.appDeployment.readinessProbe | nindent 12 }}
+          resources:
+            {{- toYaml .Values.appDeployment.resources | nindent 12 }}
+          env:
+            {{- toYaml .Values.appDeployment.environments | nindent 10 }}

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+   name: mysql-config-file
+type: Opaque
+stringData:
+  MYSQL_ROOT_PASSWORD: "{{ .Values.database.rootPassword }}"
+  MYSQL_DATABASE: "{{ .Values.database.name }}"
+  MYSQL_USER: "{{ .Values.database.user }}"
+  MYSQL_PASSWORD: "{{ .Values.database.password }}"

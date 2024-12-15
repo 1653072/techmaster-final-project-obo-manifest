@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "helm-obo.fullname" . }}-mysql
+  labels:
+    app: {{ template "helm-obo.name" . }}-mysql
+    chart: {{ template "helm-obo.chart" . }}
+spec:
+  strategy:
+    type: {{ .Values.dbDeployment.strategyType }}
+  selector:
+    matchLabels:
+      app: {{ template "helm-obo.name" . }}-mysql
+  template:
+    metadata:
+      labels:
+        app: {{ template "helm-obo.name" . }}-mysql
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}-mysql
+          image: "{{ .Values.dbDeployment.image.repository }}:{{ .Values.dbDeployment.image.tag }}"
+          imagePullPolicy: {{ .Values.dbDeployment.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.dbDeployment.containerPort }}
+          securityContext:
+            runAsUser: 0
+          env:
+            {{- toYaml .Values.dbDeployment.environments | nindent 10 }}
+          {{- with .Values.dbDeployment.volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- with .Values.dbDeployment.volumes }}
+      volumes:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

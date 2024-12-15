@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-init-file
+data:
+  obo.sql: |
+    {{ .Values.database_init | nindent 4 }}

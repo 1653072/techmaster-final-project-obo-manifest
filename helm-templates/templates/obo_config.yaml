@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Secret
+metadata:
+   name: obo-config-file
+type: Opaque
+stringData:
+  DATABASE_URL: "{{ .Values.database.connectionUrl }}"
+  DATABASE_USERNAME: "{{ .Values.database.user }}"
+  DATABASE_PASSWORD: "{{ .Values.database.password }}"
