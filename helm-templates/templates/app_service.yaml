@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "helm-obo.fullname" . }}
+  name: {{ template "helm-obo.fullname" . }}-service
   labels:
-    app: {{ template "helm-obo.name" . }}
+    app: {{ template "helm-obo.name" . }}-service
     chart: {{ template "helm-obo.chart" . }}
 spec:
   ports:
@@ -12,5 +12,5 @@ spec:
     protocol: {{ .Values.appService.protocol }}
     nodePort: {{ .Values.appService.nodePort }}
   selector:
-    app: {{ template "helm-obo.name" . }}
+    app: {{ template "helm-obo.name" . }}-service
   type: {{ .Values.appService.type }}
