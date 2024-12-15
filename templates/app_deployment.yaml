@@ -17,28 +17,27 @@ spec:
         app: obo
     spec:
       containers:
-        - name: obo-container
-          image: 'quoctran08/obo:v1'
-          ports:
-            - containerPort: 8080
-          resources:
-            requests:
-              memory: "200Mi"
-              cpu: "100m"
-          env:
-          - name: DATABASE_URL
-            valueFrom:
-              secretKeyRef:
-                name: obo-config-file
-                key: DATABASE_URL
-          - name: DATABASE_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: obo-config-file
-                key: DATABASE_USERNAME
-          - name: DATABASE_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: obo-config-file
-                key: DATABASE_PASSWORD
-
+      - name: obo-container
+        image: quoctran08/my_obo:v1.16-dev
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: 200Mi
+            cpu: 100m
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: obo-config-file
+              key: DATABASE_URL
+        - name: DATABASE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: obo-config-file
+              key: DATABASE_USERNAME
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: obo-config-file
+              key: DATABASE_PASSWORD
