@@ -34,7 +34,7 @@ appService:
   type: NodePort
   port: 8080
   targetPort: 8080
-  nodePort: 40000
+  nodePort: 30000
   protocol: TCP
 
 dbDeployment:
