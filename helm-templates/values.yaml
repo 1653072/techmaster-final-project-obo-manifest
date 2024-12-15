@@ -4,7 +4,7 @@ appDeployment:
   containerPort: 8080
   image:
     repository: quoctran08/my_obo
-    tag: v1.16-dev
+    tag: v1
     pullPolicy: IfNotPresent
   resources:
     limits:
