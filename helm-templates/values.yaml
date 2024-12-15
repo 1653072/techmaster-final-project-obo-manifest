@@ -13,14 +13,6 @@ appDeployment:
     requests:
       cpu: 100m
       memory: 200Mi
-  livenessProbe:
-    httpGet:
-      path: /
-      port: http
-  readinessProbe:
-    httpGet:
-      path: /
-      port: http
   environments:
     - name: DATABASE_URL
       valueFrom:
@@ -42,7 +34,7 @@ appService:
   type: NodePort
   port: 8080
   targetPort: 8080
-  nodePort: 30000
+  nodePort: 40000
   protocol: TCP
 
 dbDeployment:

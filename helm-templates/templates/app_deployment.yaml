@@ -25,10 +25,6 @@ spec:
             - containerPort: {{ .Values.appDeployment.containerPort }}
               name: http
               protocol: TCP
-          livenessProbe:
-            {{- toYaml .Values.appDeployment.livenessProbe | nindent 12 }}
-          readinessProbe:
-            {{- toYaml .Values.appDeployment.readinessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.appDeployment.resources | nindent 12 }}
           env:
