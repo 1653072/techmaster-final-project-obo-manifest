@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: obo-container
-        image: quoctran08/my_obo:v1.0.0
+        image: quoctran08/my_obo:v1.0.1
         ports:
         - containerPort: 8080
         resources:
